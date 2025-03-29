@@ -1,0 +1,23 @@
+tweaks:
+  # Items can be colored in the anvil.
+  anvil-color: true
+  # Removes the "Too Expensive!" message in the enchanting table.
+  # As long as the player has XP, they can enchant their items.
+  anvil-too-expensive: true
+  # Allows players to bone meal any crop.
+  crops-bone-meal: true
+  # Prevents the trampling of crops.
+  crops-trample-proof: true
+  # Breaking blocks nearby will cause their item drops to go towards the player a little.
+  # This means if you are building high up, you won't lose all your drops.
+  drops-magnet: true
+  # If a player throws an item close to an entity, they will auto equip it.
+  entity-equip: true
+  # Allows the dying of named mobs with dyes.
+  name-tag-dye: true
+  # Allows vehicles to be picked up by sneak-right-click.
+  vehicle-pickup: true
+  # Allows weapons to swing through grass without destroying them.
+  weapon-swing-grass: true
+  # Allows the filling of empty bottles into XP bottles by right-clicking on an enchanting table.
+  xp-fill: true

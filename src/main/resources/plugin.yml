@@ -1,0 +1,6 @@
+name: Nightly
+main: me.colingrimes.nightly.Nightly
+version: ${version}
+api-version: 1.21
+author: Scill
+depend: [Midnight]
