@@ -13,6 +13,8 @@ tweaks:
   drops-magnet: true
   # If a player throws an item close to an entity, they will auto equip it.
   entity-equip: true
+  # Right-clicking a hay bale with a hoe automatically crafts and drops bread.
+  hay-bale-bread: false
   # Allows the dying of named mobs with dyes.
   name-tag-dye: true
   # Setting a sponge on fire dries it out instantly.
