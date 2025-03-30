@@ -1,9 +1,6 @@
 tweaks:
   # Items can be colored in the anvil.
   anvil-color: true
-  # Removes the "Too Expensive!" message in the enchanting table.
-  # As long as the player has XP, they can enchant their items.
-  anvil-too-expensive: true
   # Allows players to bone meal any crop.
   crops-bone-meal: true
   # Prevents the trampling of crops.
@@ -39,3 +36,6 @@ tweaks:
     # Amount of XP it takes to fill each bottle.
     # In vanilla Minecraft, an XP bottle drops an average of 7 experience.
     cost: 8
+
+# Random admin stuff. No need to mess with this!
+reloaded: "&2&l✓ &a&lTweaks &ahas been reloaded. Registered &l{amount} &atweaks."
