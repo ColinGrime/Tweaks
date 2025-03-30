@@ -1,5 +1,6 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
+import me.colingrimes.midnight.util.bukkit.Inventories;
 import me.colingrimes.tweaks.Tweaks;
 import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
@@ -33,7 +34,9 @@ public class VehiclePickupTweak extends Tweak {
 
 		ItemStack item = getVehicleItem(vehicle);
 		if (item != null) {
-			vehicle.getWorld().dropItemNaturally(vehicle.getLocation(), item);
+			if (!Inventories.give(event.getPlayer(), item)) {
+				vehicle.getWorld().dropItemNaturally(vehicle.getLocation().add(0, 0.5, 0), item);
+			}
 			vehicle.remove();
 			event.setCancelled(true);
 		}
