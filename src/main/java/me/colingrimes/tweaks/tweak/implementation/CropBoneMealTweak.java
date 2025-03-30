@@ -17,9 +17,15 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nonnull;
 import java.util.Set;
 
+/**
+ * Allows you to bone meal a few additional crops:
+ * <li>Nether Wart</li>
+ * <li>Sugar Cane</li>
+ * <li>Cactus</li>
+ */
 public class CropBoneMealTweak extends Tweak {
 
-	private final Set<Material> SPECIAL_CROPS = Set.of(Material.SUGAR_CANE, Material.CACTUS);
+	private final Set<Material> HEIGHT_CROPS = Set.of(Material.SUGAR_CANE, Material.CACTUS);
 
 	public CropBoneMealTweak(@Nonnull Tweaks plugin) {
 		super(plugin, "crops_bone_meal");
@@ -44,7 +50,7 @@ public class CropBoneMealTweak extends Tweak {
 
 		// Grows special crops.
 		Material type = block.getType();
-		if (SPECIAL_CROPS.contains(type)) {
+		if (HEIGHT_CROPS.contains(type)) {
 			Location location = block.getLocation();
 			while (location.add(0, 1, 0).getBlock().getType() == type) {
 				crop.setAge(crop.getAge() + 1);
@@ -61,8 +67,8 @@ public class CropBoneMealTweak extends Tweak {
 			return;
 		}
 
-		// Grows basic crops.
-		if (crop.getAge() != crop.getMaximumAge()) {
+		// Grows nether wart.
+		if (type == Material.NETHER_WART && crop.getAge() != crop.getMaximumAge()) {
 			crop.setAge(crop.getAge() + 1);
 			block.setBlockData(crop);
 			Inventories.removeSingle(event.getPlayer().getInventory(), item);
