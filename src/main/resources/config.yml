@@ -15,9 +15,15 @@ tweaks:
   entity-equip: true
   # Allows the dying of named mobs with dyes.
   name-tag-dye: true
+  # Setting a sponge on fire dries it out instantly.
+  sponge-dry-fire: true
   # Allows vehicles to be picked up by sneak-right-click.
   vehicle-pickup: true
   # Allows weapons to swing through grass without destroying them.
   weapon-swing-grass: true
   # Allows the filling of empty bottles into XP bottles by right-clicking on an enchanting table.
-  xp-fill: true
+  xp-fill:
+    toggle: true
+    # Amount of XP it takes to fill each bottle.
+    # In vanilla Minecraft, an XP bottle drops an average of 7 experience.
+    cost: 8
