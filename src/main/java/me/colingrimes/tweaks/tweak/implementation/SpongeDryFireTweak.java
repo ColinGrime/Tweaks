@@ -39,7 +39,7 @@ public class SpongeDryFireTweak extends Tweak {
 		PlayerInventory inventory = event.getPlayer().getInventory();
 		ItemStack item = inventory.getItemInMainHand();
 		Block block = event.getClickedBlock();
-		if (item.getType() != Material.FLINT_AND_STEEL && item.getType() != Material.FIRE_CHARGE || block.getType() != Material.WET_SPONGE) {
+		if ((item.getType() != Material.FLINT_AND_STEEL && item.getType() != Material.FIRE_CHARGE) || block.getType() != Material.WET_SPONGE) {
 			return;
 		}
 
