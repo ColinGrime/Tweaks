@@ -15,6 +15,14 @@ tweaks:
   entity-equip: true
   # Right-clicking a hay bale with a hoe automatically crafts and drops bread.
   hay-bale-bread: false
+  # Allows you to view the statistics (health-speed-jump) of horses by sneak-right-click.
+  # This lets you find the best horses without having to tame them all first! :)
+  horse-statistics:
+    toggle: false
+    message:
+      - "&7Max Health: &e{health}"
+      - "&7Speed: &e{speed}"
+      - "&7Jump: &e{jump}"
   # Right-clicking a crafting table in your inventory opens it.
   inventory-crafting: true
   # Allows the dying of named mobs with dyes.
