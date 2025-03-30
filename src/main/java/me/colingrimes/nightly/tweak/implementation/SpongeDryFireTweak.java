@@ -49,7 +49,7 @@ public class SpongeDryFireTweak extends Tweak {
 		event.setCancelled(true);
 
 		// Damage flint & steel.
-		if (item.getItemMeta() instanceof Damageable damageable) {
+		if (item.getType() == Material.FLINT_AND_STEEL && item.getItemMeta() instanceof Damageable damageable) {
 			int damage = damageable.getDamage() + 1;
 			if (damage >= item.getType().getMaxDurability()) {
 				item.setAmount(0);
