@@ -1,8 +1,8 @@
-package me.colingrimes.nightly.tweak.implementation;
+package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.nightly.Nightly;
-import me.colingrimes.nightly.config.Settings;
-import me.colingrimes.nightly.tweak.Tweak;
+import me.colingrimes.tweaks.Tweaks;
+import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 
 public class CropTrampleProof extends Tweak {
 
-	public CropTrampleProof(@Nonnull Nightly plugin) {
+	public CropTrampleProof(@Nonnull Tweaks plugin) {
 		super(plugin, "crops_trample_proof");
 	}
 

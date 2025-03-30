@@ -1,4 +1,4 @@
-package me.colingrimes.nightly.config;
+package me.colingrimes.tweaks.config;
 
 import me.colingrimes.midnight.config.annotation.Configuration;
 import me.colingrimes.midnight.config.option.Option;

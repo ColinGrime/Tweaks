@@ -9,7 +9,7 @@ java {
     targetCompatibility JavaVersion.VERSION_21
 }
 
-group 'me.colingrimes.nightly'
+group 'me.colingrimes.tweaks'
 version '1.0.0'
 
 repositories {

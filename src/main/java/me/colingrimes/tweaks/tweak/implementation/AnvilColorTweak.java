@@ -1,9 +1,9 @@
-package me.colingrimes.nightly.tweak.implementation;
+package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.midnight.util.bukkit.Items;
-import me.colingrimes.nightly.Nightly;
-import me.colingrimes.nightly.config.Settings;
-import me.colingrimes.nightly.tweak.Tweak;
+import me.colingrimes.tweaks.Tweaks;
+import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 
@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 
 public class AnvilColorTweak extends Tweak {
 
-	public AnvilColorTweak(@Nonnull Nightly plugin) {
+	public AnvilColorTweak(@Nonnull Tweaks plugin) {
 		super(plugin, "anvil_color");
 	}
 

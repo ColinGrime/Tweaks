@@ -1,11 +1,11 @@
-package me.colingrimes.nightly.tweak.implementation;
+package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.midnight.util.bukkit.Experience;
 import me.colingrimes.midnight.util.bukkit.Inventories;
 import me.colingrimes.midnight.util.bukkit.Items;
-import me.colingrimes.nightly.Nightly;
-import me.colingrimes.nightly.config.Settings;
-import me.colingrimes.nightly.tweak.Tweak;
+import me.colingrimes.tweaks.Tweaks;
+import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
 
 public class XpFillTweak extends Tweak {
 
-	public XpFillTweak(@Nonnull Nightly plugin) {
+	public XpFillTweak(@Nonnull Tweaks plugin) {
 		super(plugin, "xp_fill");
 	}
 

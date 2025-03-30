@@ -1,10 +1,10 @@
-package me.colingrimes.nightly.tweak.implementation;
+package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.midnight.util.bukkit.Entities;
 import me.colingrimes.midnight.util.bukkit.Vectors;
-import me.colingrimes.nightly.Nightly;
-import me.colingrimes.nightly.config.Settings;
-import me.colingrimes.nightly.tweak.Tweak;
+import me.colingrimes.tweaks.Tweaks;
+import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 
 public class DropMagnetTweak extends Tweak {
 
-	public DropMagnetTweak(@Nonnull Nightly plugin) {
+	public DropMagnetTweak(@Nonnull Tweaks plugin) {
 		super(plugin, "drops_magnet");
 	}
 

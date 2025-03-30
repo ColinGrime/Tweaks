@@ -1,9 +1,9 @@
-package me.colingrimes.nightly.tweak.implementation;
+package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.midnight.util.bukkit.Inventories;
-import me.colingrimes.nightly.Nightly;
-import me.colingrimes.nightly.config.Settings;
-import me.colingrimes.nightly.tweak.Tweak;
+import me.colingrimes.tweaks.Tweaks;
+import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -21,7 +21,7 @@ public class CropBoneMealTweak extends Tweak {
 
 	private final Set<Material> SPECIAL_CROPS = Set.of(Material.SUGAR_CANE, Material.CACTUS);
 
-	public CropBoneMealTweak(@Nonnull Nightly plugin) {
+	public CropBoneMealTweak(@Nonnull Tweaks plugin) {
 		super(plugin, "crops_bone_meal");
 	}
 

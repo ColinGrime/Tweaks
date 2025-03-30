@@ -1,8 +1,8 @@
-package me.colingrimes.nightly.tweak.implementation;
+package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.nightly.Nightly;
-import me.colingrimes.nightly.config.Settings;
-import me.colingrimes.nightly.tweak.Tweak;
+import me.colingrimes.tweaks.Tweaks;
+import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,7 +18,7 @@ import javax.annotation.Nonnull;
 
 public class WeaponSwingGrassTweak extends Tweak {
 
-	public WeaponSwingGrassTweak(@Nonnull Nightly plugin) {
+	public WeaponSwingGrassTweak(@Nonnull Tweaks plugin) {
 		super(plugin, "weapon_swing_grass");
 	}
 

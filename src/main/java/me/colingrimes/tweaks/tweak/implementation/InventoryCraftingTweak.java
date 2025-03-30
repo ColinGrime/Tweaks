@@ -1,9 +1,9 @@
-package me.colingrimes.nightly.tweak.implementation;
+package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.midnight.scheduler.Scheduler;
-import me.colingrimes.nightly.Nightly;
-import me.colingrimes.nightly.config.Settings;
-import me.colingrimes.nightly.tweak.Tweak;
+import me.colingrimes.tweaks.Tweaks;
+import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 
 public class InventoryCraftingTweak extends Tweak {
 
-	public InventoryCraftingTweak(@Nonnull Nightly plugin) {
+	public InventoryCraftingTweak(@Nonnull Tweaks plugin) {
 		super(plugin, "inventory_crafting");
 	}
 

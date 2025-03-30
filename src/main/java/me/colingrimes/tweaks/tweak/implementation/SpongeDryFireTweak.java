@@ -1,10 +1,10 @@
-package me.colingrimes.nightly.tweak.implementation;
+package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.midnight.util.bukkit.Inventories;
 import me.colingrimes.midnight.util.bukkit.Players;
-import me.colingrimes.nightly.Nightly;
-import me.colingrimes.nightly.config.Settings;
-import me.colingrimes.nightly.tweak.Tweak;
+import me.colingrimes.tweaks.Tweaks;
+import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -21,7 +21,7 @@ import javax.annotation.Nonnull;
 
 public class SpongeDryFireTweak extends Tweak {
 
-	public SpongeDryFireTweak(@Nonnull Nightly plugin) {
+	public SpongeDryFireTweak(@Nonnull Tweaks plugin) {
 		super(plugin, "sponge_dry_fire");
 	}
 

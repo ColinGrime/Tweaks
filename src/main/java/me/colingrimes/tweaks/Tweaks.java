@@ -1,16 +1,16 @@
-package me.colingrimes.nightly;
+package me.colingrimes.tweaks;
 
 import me.colingrimes.midnight.Midnight;
 import me.colingrimes.midnight.util.io.Introspector;
 import me.colingrimes.midnight.util.io.Logger;
-import me.colingrimes.nightly.tweak.Tweak;
+import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.event.HandlerList;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Nightly extends Midnight {
+public class Tweaks extends Midnight {
 
 	private final List<Tweak> tweaks = new ArrayList<>();
 

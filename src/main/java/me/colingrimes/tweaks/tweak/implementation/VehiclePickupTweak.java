@@ -1,8 +1,8 @@
-package me.colingrimes.nightly.tweak.implementation;
+package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.nightly.Nightly;
-import me.colingrimes.nightly.config.Settings;
-import me.colingrimes.nightly.tweak.Tweak;
+import me.colingrimes.tweaks.Tweaks;
+import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Vehicle;
@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 
 public class VehiclePickupTweak extends Tweak {
 
-	public VehiclePickupTweak(@Nonnull Nightly plugin) {
+	public VehiclePickupTweak(@Nonnull Tweaks plugin) {
 		super(plugin, "vehicle_pickup");
 	}
 

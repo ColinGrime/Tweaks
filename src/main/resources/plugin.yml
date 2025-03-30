@@ -1,5 +1,5 @@
-name: Nightly
-main: me.colingrimes.nightly.Nightly
+name: Tweaks
+main: me.colingrimes.tweaks.Tweaks
 version: ${version}
 api-version: 1.21
 author: Scill
