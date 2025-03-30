@@ -10,6 +10,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 
 import javax.annotation.Nonnull;
 
@@ -34,6 +35,17 @@ public class HayBaleBreadTweak extends Tweak {
 		Block block = event.getClickedBlock();
 		if (!item.getType().name().endsWith("HOE") || block.getType() != Material.HAY_BLOCK) {
 			return;
+		}
+
+		// Damage hoe.
+		if (item.getItemMeta() instanceof Damageable damageable) {
+			int damage = damageable.getDamage() + 1;
+			if (damage >= item.getType().getMaxDurability()) {
+				item.setAmount(0);
+			} else {
+				damageable.setDamage(damage);
+				item.setItemMeta(damageable);
+			}
 		}
 
 		block.setType(Material.AIR);
