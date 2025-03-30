@@ -22,7 +22,8 @@ public class AnvilColorTweak extends Tweak {
 
 	@EventHandler
 	public void onPrepareAnvil(@Nonnull PrepareAnvilEvent event) {
-		if (event.getResult() != null) {
+		String renameText = event.getView().getRenameText();
+		if (event.getResult() != null && renameText != null && renameText.contains("&")) {
 			event.setResult(Items.of(event.getResult()).build());
 		}
 	}
