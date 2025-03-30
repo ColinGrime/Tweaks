@@ -12,6 +12,7 @@ import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 public class DropMagnetTweak extends Tweak {
 
@@ -26,11 +27,12 @@ public class DropMagnetTweak extends Tweak {
 
 	@EventHandler
 	public void onBlockDropItem(@Nonnull BlockDropItemEvent event) {
-		if (!Entities.nearby(Player.class, event.getItems().getFirst().getLocation(), 2).contains(event.getPlayer())) {
+		List<Item> items = event.getItems();
+		if (items.isEmpty() || !Entities.nearby(Player.class, items.getFirst().getLocation(), 2).contains(event.getPlayer())) {
 			return;
 		}
 
-		for (Item item : event.getItems()) {
+		for (Item item : items) {
 			item.setVelocity(Vectors.direction(item, event.getPlayer()).multiply(new Vector(0.2, 0.4, 0.2)));
 		}
 	}
