@@ -22,7 +22,7 @@ public class DropMagnetTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_DROP_MAGNET.get();
+		return Settings.TWEAK_DROPS_MAGNET.get();
 	}
 
 	@EventHandler
