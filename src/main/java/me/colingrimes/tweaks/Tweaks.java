@@ -32,12 +32,13 @@ public class Tweaks extends Midnight {
 	/**
 	 * Registers all the tweaks.
 	 */
-	public void registerTweaks() {
+	public int registerTweaks() {
 		HandlerList.unregisterAll(this);
 		List<Class<?>> classes = Introspector.getClasses(getClassLoader(), getRootPackage() + ".tweak.implementation");
-		List<Tweak> tweaks = Introspector.instantiateClasses(classes, Tweak.class, this);
-		this.tweaks.clear();
-		this.tweaks.addAll(tweaks.stream().filter(Tweak::isEnabled).toList());
+		List<Tweak> tweakClasses = Introspector.instantiateClasses(classes, Tweak.class, this);
+		tweaks.clear();
+		tweaks.addAll(tweakClasses.stream().filter(Tweak::isEnabled).toList());
 		Logger.log("Registered " + tweaks.size() + " tweaks.");
+		return tweaks.size();
 	}
 }

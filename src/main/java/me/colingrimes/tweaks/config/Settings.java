@@ -11,7 +11,6 @@ import static me.colingrimes.midnight.config.option.OptionFactory.option;
 public interface Settings {
 
 	Option<Boolean> TWEAK_ANVIL_COLOR = option("tweaks.anvil-color", true);
-	Option<Boolean> TWEAK_ANVIL_TOO_EXPENSIVE = option("tweaks.anvil-too-expensive", true);
 	Option<Boolean> TWEAK_CROPS_BONE_MEAL = option("tweaks.crops-bone-meal", true);
 	Option<Boolean> TWEAK_CROPS_TRAMPLE_PROOF = option("tweaks.crops-trample-proof", true);
 	Option<Boolean> TWEAK_DROP_MAGNET = option("tweaks.drop-magnet", true);
@@ -26,4 +25,7 @@ public interface Settings {
 	Option<Boolean> TWEAK_WEAPON_SWING_GRASS = option("tweaks.weapon-swing-grass", true);
 	Option<Boolean> TWEAK_XP_FILL = option("tweaks.xp-fill.toggle", true);
 	Option<Integer> TWEAK_XP_FILL_COST = option("tweaks.xp-fill.cost", 8);
+
+	// Admin stuff.
+	Message<?> RELOADED = message("admin.reloaded", "&2&l✓ &a&lTweaks &ahas been reloaded. Registered &l{amount} &atweaks.");
 }
