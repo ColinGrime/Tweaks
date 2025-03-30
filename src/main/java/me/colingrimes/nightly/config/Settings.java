@@ -15,6 +15,7 @@ public interface Settings {
 	Option<Boolean> TWEAK_DROP_MAGNET = option("tweaks.drop-magnet", true);
 	Option<Boolean> TWEAK_ENTITY_EQUIP = option("tweaks.entity-equip", true);
 	Option<Boolean> TWEAK_HAY_BALE_BREAD = option("tweaks.hay-bale-bread", false);
+	Option<Boolean> TWEAK_INVENTORY_CRAFTING = option("tweaks.inventory-crafting", true);
 	Option<Boolean> TWEAK_SPONGE_DRY_FIRE = option("tweaks.sponge-dry-fire", true);
 	Option<Boolean> TWEAK_NAME_TAG_DYE = option("tweaks.name-tag-dye", true);
 	Option<Boolean> TWEAK_VEHICLE_PICKUP = option("tweaks.name-tag-equip", true);
