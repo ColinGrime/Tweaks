@@ -1,22 +1,35 @@
 package me.colingrimes.tweaks;
 
 import me.colingrimes.midnight.Midnight;
+import me.colingrimes.midnight.libs.bstats.bukkit.Metrics;
 import me.colingrimes.midnight.util.io.Introspector;
 import me.colingrimes.midnight.util.io.Logger;
+import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
+import org.bukkit.Bukkit;
+import org.bukkit.Keyed;
+import org.bukkit.NamespacedKey;
 import org.bukkit.event.HandlerList;
+import org.bukkit.inventory.Recipe;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Tweaks extends Midnight {
 
 	private final List<Tweak> tweaks = new ArrayList<>();
+	private List<NamespacedKey> allRecipes;
 
 	@Override
 	protected void enable() {
 		registerTweaks();
+
+		// Check for Metrics.
+		if (Settings.ENABLE_METRICS.get()) {
+			new Metrics(this, 25315);
+		}
 	}
 
 	/**
@@ -40,5 +53,28 @@ public class Tweaks extends Midnight {
 		tweaks.addAll(tweakClasses.stream().filter(Tweak::isEnabled).toList());
 		Logger.log("Registered " + tweaks.size() + " tweaks.");
 		return tweaks.size();
+	}
+
+	/**
+	 * Gets a list of all recipes in Minecraft.
+	 *
+	 * @return a list of all recipes
+	 */
+	@Nonnull
+	public List<NamespacedKey> getAllRecipes() {
+		if (allRecipes != null) {
+			return allRecipes;
+		}
+
+		List<NamespacedKey> recipes = new ArrayList<>();
+		Iterator<Recipe> recipeIterator = Bukkit.recipeIterator();
+		while (recipeIterator.hasNext()) {
+			Recipe recipe = recipeIterator.next();
+			if (recipe instanceof Keyed keyed) {
+				recipes.add(keyed.getKey());
+			}
+		}
+		allRecipes = recipes;
+		return recipes;
 	}
 }
