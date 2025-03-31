@@ -1,53 +1,45 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
+import me.colingrimes.midnight.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.Tweaks;
 import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.util.RayTraceResult;
 
 import javax.annotation.Nonnull;
 
-public class WeaponSwingGrassTweak extends Tweak {
+public class WeaponSwingThroughGrassTweak extends Tweak {
 
-	public WeaponSwingGrassTweak(@Nonnull Tweaks plugin) {
-		super(plugin, "weapon_swing_grass");
+	public WeaponSwingThroughGrassTweak(@Nonnull Tweaks plugin) {
+		super(plugin, "weapon_swing_through_grass");
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_WEAPON_SWING_GRASS.get();
+		return Settings.TWEAK_WEAPON_SWING_THROUGH_GRASS.get();
 	}
 
 	@EventHandler
-	public void onPlayerInteract(@Nonnull PlayerInteractEvent event) {
-		if (event.getHand() != EquipmentSlot.HAND || event.getAction() != Action.LEFT_CLICK_BLOCK) {
+	public void onPlayerInteract(@Nonnull PlayerInteractBlockEvent event) {
+		if (!event.isLeftClick() || !event.getBlock().isPassable()) {
 			return;
 		}
 
-		Block block = event.getClickedBlock();
-		if (block == null || !block.isPassable()) {
-			return;
-		}
-
-		Player player = event.getPlayer();
-		Material type = player.getInventory().getItemInMainHand().getType();
+		Material type = event.getItemType();
 		if (!type.name().endsWith("_SWORD") && !type.name().endsWith("_AXE")) {
 			return;
 		}
 
+		Player player = event.getPlayer();
 		Location eye = player.getEyeLocation();
 		RayTraceResult result = player.getWorld().rayTrace(eye, eye.getDirection(), 3.5, FluidCollisionMode.NEVER, true, 0, e -> !e.equals(player));
 		if (result != null && result.getHitEntity() != null) {
-			event.getPlayer().attack(result.getHitEntity());
+			player.attack(result.getHitEntity());
 		}
 
 		event.setCancelled(true);
