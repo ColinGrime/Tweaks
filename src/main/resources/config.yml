@@ -1,6 +1,8 @@
 tweaks:
   # Items can be colored in the anvil.
   anvil-color: true
+  # Right-clicking an anvil with an iron block will repair it slightly.
+  anvil-repair: true
   # Allows players to bone meal any crop.
   crops-bone-meal: true
   # Prevents the trampling of crops.
@@ -10,12 +12,19 @@ tweaks:
   drops-magnet: true
   # If a player throws an item close to an entity, they will auto equip it.
   entity-equip: true
+  # Setting a sponge on fire dries it out instantly.
+  fire-dries-sponges: true
+  # Glass breaks instantly when broken by the materials below.
+  glass-break:
+    toggle: true
+    materials:
+      - NETHERITE_PICKAXE
   # Right-clicking a hay bale with a hoe automatically crafts and drops bread.
   hay-bale-bread: false
   # Allows you to view the statistics (health-speed-jump) of horses by sneak-right-click.
   # This lets you find the best horses without having to tame them all first! :)
   horse-statistics:
-    toggle: false
+    toggle: true
     message:
       - "&7Max Health: &e{health}"
       - "&7Speed: &e{speed}"
@@ -24,12 +33,15 @@ tweaks:
   inventory-crafting: true
   # Allows the dying of named mobs with dyes.
   name-tag-dye: true
-  # Setting a sponge on fire dries it out instantly.
-  sponge-dry-fire: true
+  # Nether portals can no longer be destroyed by explosions.
+  # No more ghasts or creepers destroying them!
+  portal-explosion-proof: true
   # Allows vehicles to be picked up by sneak-right-click.
   vehicle-pickup: true
-  # Allows weapons to swing through grass without destroying them.
-  weapon-swing-grass: true
+  # Allows weapons (swords/axes) to swing through grass without destroying them.
+  weapon-swing-through-grass: true
+  # When wolves sit down, they will no longer be aggressive.
+  wolf-deaggro-on-sit: true
   # Allows the filling of empty bottles into XP bottles by right-clicking on an enchanting table.
   xp-fill:
     toggle: true
@@ -39,3 +51,7 @@ tweaks:
 
 # Random admin stuff. No need to mess with this!
 reloaded: "&2&l✓ &a&lTweaks &ahas been reloaded. Registered &l{amount} &atweaks."
+reset-recipes: "&2&l✓ &aRecipes have been reset for all online players."
+
+# Allows us to collect anonymous data about the plugin.
+enable-metrics: true
