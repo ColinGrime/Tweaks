@@ -45,8 +45,8 @@ public class FireDriesSpongesTweak extends Tweak {
 		}
 
 		// Use a single fire charge.
-		if (event.isItem(Material.FIRE_CHARGE) && Inventories.removeSingle(event.getInventory(), event.getItem())) {
-			Players.sound(player, Sound.ENTITY_ITEM_BREAK);
+		if (event.isItem(Material.FIRE_CHARGE)) {
+			Inventories.removeSingle(event.getInventory(), event.getItem());
 		}
 	}
 }
