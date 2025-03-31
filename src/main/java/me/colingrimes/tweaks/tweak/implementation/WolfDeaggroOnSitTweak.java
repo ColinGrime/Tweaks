@@ -2,7 +2,6 @@ package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.midnight.scheduler.Scheduler;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.entity.Wolf;
 import org.bukkit.event.EventHandler;
@@ -19,7 +18,7 @@ public class WolfDeaggroOnSitTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_WOLF_DEAGGRO_ON_SIT.get();
+		return false;
 	}
 
 	@EventHandler
@@ -28,14 +27,16 @@ public class WolfDeaggroOnSitTweak extends Tweak {
 			return;
 		}
 
+		// Needs to be reworked + consideration towards other wolves who join in the fight.
+		// Perhaps shift right click to sit all? Not sure yet.
 		if (wolf.isTamed() && event.getPlayer().equals(wolf.getOwner())) {
 			boolean wasSitting = wolf.isSitting();
-			Scheduler.sync().run(() -> {
-				if (wolf.isSitting() != wasSitting) {
+			Scheduler.sync().runLater(() -> {
+				if (wolf.isSitting() && !wasSitting) {
 					wolf.setAngry(false);
 					wolf.setTarget(null);
 				}
-			});
+			}, 2L);
 		}
 	}
 }
