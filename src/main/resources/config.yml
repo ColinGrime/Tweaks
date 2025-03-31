@@ -33,6 +33,9 @@ tweaks:
   inventory-crafting: true
   # Allows the dying of named mobs with dyes.
   name-tag-dye: true
+  # Players who join the server will have all the recipes unlocked.
+  # If you accidentally kept this on and didn't want this, just do '/tweaks resetrecipes'.
+  recipe-unlock-all: true
   # Nether portals can no longer be destroyed by explosions.
   # No more ghasts or creepers destroying them!
   portal-explosion-proof: true
@@ -40,8 +43,6 @@ tweaks:
   vehicle-pickup: true
   # Allows weapons (swords/axes) to swing through grass without destroying them.
   weapon-swing-through-grass: true
-  # When wolves sit down, they will no longer be aggressive.
-  wolf-deaggro-on-sit: true
   # Allows the filling of empty bottles into XP bottles by right-clicking on an enchanting table.
   xp-fill:
     toggle: true
