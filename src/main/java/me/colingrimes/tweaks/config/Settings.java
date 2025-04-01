@@ -20,7 +20,7 @@ public interface Settings {
 	Option<Boolean>       TWEAK_CROPS_BONE_MEAL            = option("tweaks.crops-bone-meal", true);
 	Option<Boolean>       TWEAK_CROPS_TRAMPLE_PROOF        = option("tweaks.crops-trample-proof", true);
 	Option<Boolean>       TWEAK_DROPS_MAGNET               = option("tweaks.drops-magnet", true);
-	Option<Boolean>       TWEAK_ENTITY_EQUIP               = option("tweaks.entity-equip", true);
+	Option<Boolean>       TWEAK_ENTITY_EQUIP               = option("tweaks.entity-equip", false);
 	Option<Boolean>       TWEAK_FIRE_DRIES_SPONGES         = option("tweaks.fire-dries-sponges", true);
 	Option<Boolean>       TWEAK_GLASS_BREAK                = option("tweaks.glass-break.toggle", true);
 	Option<Set<Material>> TWEAK_GLASS_BREAK_MATERIALS      = option("tweaks.glass-break", sec -> sec.getStringList("materials").stream().map(m -> Material.getMaterial(m.toUpperCase())).filter(Objects::nonNull).collect(Collectors.toSet()));

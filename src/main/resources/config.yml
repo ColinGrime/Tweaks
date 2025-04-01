@@ -11,7 +11,7 @@ tweaks:
   # This means if you are building high up, you won't lose all your drops.
   drops-magnet: true
   # If a player throws an item close to an entity, they will auto equip it.
-  entity-equip: true
+  entity-equip: false
   # Setting a sponge on fire dries it out instantly.
   fire-dries-sponges: true
   # Glass breaks instantly when broken by the materials below.
