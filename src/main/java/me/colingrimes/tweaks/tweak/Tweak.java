@@ -25,4 +25,14 @@ public abstract class Tweak implements Listener {
 	 * @return true if the tweak is enabled
 	 */
 	public abstract boolean isEnabled();
+
+	/**
+	 * Runs when the tweak is initialized.
+	 */
+	public void init() {}
+
+	/**
+	 * Runs when the tweak is shutdown.
+	 */
+	public void shutdown() {}
 }
