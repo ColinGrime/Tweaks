@@ -32,8 +32,10 @@ public interface Settings {
 	Option<Boolean>       TWEAK_RECIPE_UNLOCK_ALL          = option("tweaks.recipe-unlock-all", true);
 	Option<Boolean>       TWEAK_PORTAL_EXPLOSION_PROOF     = option("tweaks.portal-explosion-proof", true);
 	Option<Boolean>       TWEAK_VEHICLE_PICKUP             = option("tweaks.vehicle-pickup", true);
+	Option<Boolean>       TWEAK_WATER_BOTTLE_CONVERT_LAVA  = option("tweaks.water-bottle-convert-lava", true);
+	Option<Boolean>       TWEAK_WATER_BOTTLE_CRAFT         = option("tweaks.water-bottle-craft.toggle", true);
+	Option<Integer>       TWEAK_WATER_BOTTLE_CRAFT_AMOUNT  = option("tweaks.water-bottle-craft.amount", 8);
 	Option<Boolean>       TWEAK_WEAPON_SWING_THROUGH_GRASS = option("tweaks.weapon-swing-through-grass", true);
-	Option<Boolean>       TWEAK_WOLF_DEAGGRO_ON_SIT        = option("tweaks.wolf-deaggro-on-sit", true);
 	Option<Boolean>       TWEAK_XP_FILL                    = option("tweaks.xp-fill.toggle", true);
 	Option<Integer>       TWEAK_XP_FILL_COST               = option("tweaks.xp-fill.cost", 8);
 

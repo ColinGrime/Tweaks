@@ -41,6 +41,13 @@ tweaks:
   portal-explosion-proof: true
   # Allows vehicles to be picked up by sneak-right-click.
   vehicle-pickup: true
+  # Splashing a water bottle into lava converts it into obsidian.
+  water-bottle-convert-lava: true
+  # Allows you to convert a water bucket into splash water bottles.
+  water-bottle-craft:
+    toggle: true
+    # Amount of splash water bottles you get.
+    amount: 8
   # Allows weapons (swords/axes) to swing through grass without destroying them.
   weapon-swing-through-grass: true
   # Allows the filling of empty bottles into XP bottles by right-clicking on an enchanting table.
