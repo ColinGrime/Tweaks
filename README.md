@@ -12,8 +12,10 @@
 * `anvil-repair` - Right-clicking an anvil with an iron block will repair it slightly.
 * `crops-bone-meal` - Allows players to bone meal any crop.
 * `crops-trample-proof` - Prevents the trampling of crops.
+* `double-doors` - Allows the opening of double doors with 1 click.
 * `drops-magnet` - Breaking blocks nearby will cause their item drops to go towards the player a little.
 * `entity-equip` - If a player throws an item close to an entity, they will auto equip it.
+* `entity-set-on-fire` - Right-clicking an entity with a flint & steel or fire charge sets it on fire.
 * `fire-dries-sponges` - Setting a sponge on fire dries it out instantly.
 * `glass-break` - Glass breaks instantly when broken by a Netherite Pickaxe (configurable).
 * `hay-bale-bread` - Right-clicking a hay bale with a hoe automatically crafts and drops bread.
@@ -22,7 +24,10 @@
 * `name-tag-dye` - Allows the dying of named mobs with dyes.
 * `recipe-unlock-all` - Players who join the server will have all the recipes unlocked.
 * `portal-explosion-proof` - Nether portals can no longer be destroyed by explosions.
+* `torch-throw` - Allows you to throw torches on the ground to place them.
 * `vehicle-pickup` - Allows vehicles to be picked up by sneak-right-click.
+* `water-bottle-convert-lava` - Splashing a water bottle into lava converts it into obsidian.
+* `water-bottle-craft` - Allows you to convert a water bucket into splash water bottles.
 * `weapon-swing-through-grass` - Allows weapons to swing through grass without destroying them.
 * `xp-fill` - Allows the filling of empty bottles into XP bottles by right-clicking on an enchanting table.
 
