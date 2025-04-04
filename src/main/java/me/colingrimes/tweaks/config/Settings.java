@@ -19,6 +19,8 @@ public interface Settings {
 	Option<Boolean>       TWEAK_ANVIL_REPAIR               = option("tweaks.anvil-repair", true);
 	Option<Boolean>       TWEAK_CROPS_BONE_MEAL            = option("tweaks.crops-bone-meal", true);
 	Option<Boolean>       TWEAK_CROPS_TRAMPLE_PROOF        = option("tweaks.crops-trample-proof", true);
+	Option<Boolean>       TWEAK_DOUBLE_DOORS               = option("tweaks.double-doors.toggle", true);
+	Option<Boolean>       TWEAK_DOUBLE_DOORS_IRON_DOORS    = option("tweaks.double-doors.iron-doors", false);
 	Option<Boolean>       TWEAK_DROPS_MAGNET               = option("tweaks.drops-magnet", true);
 	Option<Boolean>       TWEAK_ENTITY_EQUIP               = option("tweaks.entity-equip", false);
 	Option<Boolean>       TWEAK_FIRE_DRIES_SPONGES         = option("tweaks.fire-dries-sponges", true);

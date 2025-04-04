@@ -7,6 +7,11 @@ tweaks:
   crops-bone-meal: true
   # Prevents the trampling of crops.
   crops-trample-proof: true
+  # Double doors can be opened with 1 click.
+  double-doors:
+    toggle: true
+    # Allows you to open iron doors (+ double iron doors) with your hand.
+    iron-doors: false
   # Breaking blocks nearby will cause their item drops to go towards the player a little.
   # This means if you are building high up, you won't lose all your drops.
   drops-magnet: true
