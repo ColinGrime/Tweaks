@@ -25,7 +25,7 @@ public class DoubleDoorsTweak extends Tweak {
 
 	@EventHandler
 	public void onPlayerInteractBlock(@Nonnull PlayerInteractBlockEvent event) {
-		if (!event.isRightClick() || !event.getBlockType().name().endsWith("DOOR")) {
+		if (!event.isRightClick() || !event.getBlockType().name().endsWith("_DOOR")) {
 			return;
 		}
 
