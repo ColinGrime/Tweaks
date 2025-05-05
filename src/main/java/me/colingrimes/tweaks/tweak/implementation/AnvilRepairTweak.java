@@ -1,11 +1,9 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.event.PlayerInteractBlockEvent;
-import me.colingrimes.midnight.util.bukkit.Inventories;
-import me.colingrimes.midnight.util.bukkit.Players;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -23,7 +21,7 @@ public class AnvilRepairTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_ANVIL_REPAIR.get();
+		return settings.TWEAK_ANVIL_REPAIR.get();
 	}
 
 	@EventHandler
@@ -32,17 +30,16 @@ public class AnvilRepairTweak extends Tweak {
 			return;
 		}
 
-		if (Inventories.removeSingle(event.getInventory(), event.getItem())) {
-			Block block = event.getBlock();
-			BlockFace blockFace = ((Directional) event.getBlock().getBlockData()).getFacing();
-			block.setType(block.getType() == Material.CHIPPED_ANVIL ? Material.ANVIL : Material.CHIPPED_ANVIL);
+		Block block = event.getBlock();
+		BlockFace blockFace = ((Directional) event.getBlock().getBlockData()).getFacing();
+		block.setType(block.getType() == Material.CHIPPED_ANVIL ? Material.ANVIL : Material.CHIPPED_ANVIL);
 
-			Directional blockData = (Directional) event.getBlock().getBlockData();
-			blockData.setFacing(blockFace);
-			block.setBlockData(blockData);
+		Directional blockData = (Directional) event.getBlock().getBlockData();
+		blockData.setFacing(blockFace);
+		block.setBlockData(blockData);
 
-			Players.sound(event.getPlayer(), Sound.BLOCK_ANVIL_USE);
-			event.setCancelled(true);
-		}
+		Util.removeSingle(event.getItem());
+		Util.sound(event.getPlayer(), Sound.BLOCK_ANVIL_USE);
+		event.setCancelled(true);
 	}
 }

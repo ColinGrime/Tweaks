@@ -1,8 +1,8 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.AbstractHorse;
@@ -21,7 +21,7 @@ public class HorseStatisticsTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_HORSE_STATISTICS.get();
+		return settings.TWEAK_HORSE_STATISTICS.get();
 	}
 
 	@EventHandler
@@ -37,11 +37,12 @@ public class HorseStatisticsTweak extends Tweak {
 			double health = maxHealth.getBaseValue();
 			double speed = maxSpeed.getBaseValue();
 			double jump = horse.getJumpStrength();
-			Settings.TWEAK_HORSE_STATISTICS_MESSAGE
-					.replace("{health}", String.format("%.2f", health) + " HP")
-					.replace("{speed}", String.format("%.2f", convertSpeed(speed)) + " blocks/sec")
-					.replace("{jump}", String.format("%.2f", convertJump(jump)) + " blocks")
-					.send(player);
+			for (String msg : settings.TWEAK_HORSE_STATISTICS_MESSAGE.get()) {
+				player.sendMessage(Util.color(msg
+						.replace("{health}", String.format("%.2f", health) + " HP")
+						.replace("{speed}", String.format("%.2f", convertSpeed(speed)) + " blocks/sec")
+						.replace("{jump}", String.format("%.2f", convertJump(jump)) + " blocks")));
+			}
 		}
 	}
 

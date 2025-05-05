@@ -1,8 +1,6 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.util.bukkit.Inventories;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -23,7 +21,7 @@ public class VehiclePickupTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_VEHICLE_PICKUP.get();
+		return settings.TWEAK_VEHICLE_PICKUP.get();
 	}
 
 	@EventHandler
@@ -34,7 +32,7 @@ public class VehiclePickupTweak extends Tweak {
 
 		ItemStack item = getVehicleItem(vehicle);
 		if (item != null) {
-			if (!Inventories.give(event.getPlayer(), item)) {
+			if (!event.getPlayer().getInventory().addItem(item).isEmpty()) {
 				vehicle.getWorld().dropItemNaturally(vehicle.getLocation().add(0, 0.5, 0), item);
 			}
 			vehicle.remove();

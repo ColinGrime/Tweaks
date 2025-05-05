@@ -1,12 +1,9 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.util.bukkit.Entities;
-import me.colingrimes.midnight.util.bukkit.Vectors;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.util.Vector;
@@ -22,14 +19,14 @@ public class DropMagnetTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_DROPS_MAGNET.get();
+		return settings.TWEAK_DROPS_MAGNET.get();
 	}
 
 	@EventHandler
 	public void onBlockDropItem(@Nonnull BlockDropItemEvent event) {
 		List<Item> items = event.getItems();
-		if (!items.isEmpty() && Entities.nearby(Player.class, items.getFirst().getLocation(), 2).contains(event.getPlayer())) {
-			items.forEach(i -> i.setVelocity(Vectors.direction(i, event.getPlayer()).multiply(new Vector(0.2, 0.4, 0.2))));
+		if (!items.isEmpty() && items.getFirst().getNearbyEntities(2, 2, 2).contains(event.getPlayer())) {
+			items.forEach(i -> i.setVelocity(Util.direction(i, event.getPlayer()).multiply(new Vector(0.2, 0.4, 0.2))));
 		}
 	}
 }

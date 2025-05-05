@@ -1,11 +1,8 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.util.bukkit.Inventories;
-import me.colingrimes.midnight.util.bukkit.Items;
-import me.colingrimes.midnight.util.bukkit.Players;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
@@ -25,7 +22,7 @@ public class EntitySetOnFireTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_ENTITY_SET_ON_FIRE.get();
+		return settings.TWEAK_ENTITY_SET_ON_FIRE.get();
 	}
 
 	@EventHandler
@@ -47,13 +44,13 @@ public class EntitySetOnFireTweak extends Tweak {
 		player.swingMainHand();
 
 		// Damage flint & steel.
-		if (type == Material.FLINT_AND_STEEL && Items.damage(item)) {
-			Players.sound(player, Sound.ENTITY_ITEM_BREAK);
+		if (type == Material.FLINT_AND_STEEL && Util.damage(item)) {
+			Util.sound(player, Sound.ENTITY_ITEM_BREAK);
 		}
 
 		// Use a single fire charge.
 		if (type == Material.FIRE_CHARGE) {
-			Inventories.removeSingle(player.getInventory(), item);
+			Util.removeSingle(item);
 		}
 	}
 }

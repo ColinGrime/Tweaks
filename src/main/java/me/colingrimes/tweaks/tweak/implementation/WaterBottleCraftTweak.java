@@ -1,7 +1,6 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -24,17 +23,17 @@ public class WaterBottleCraftTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_WATER_BOTTLE_CRAFT.get();
+		return settings.TWEAK_WATER_BOTTLE_CRAFT.get();
 	}
 
 	@Override
 	public void init() {
-		ItemStack item = new ItemStack(Material.SPLASH_POTION, Settings.TWEAK_WATER_BOTTLE_CRAFT_AMOUNT.get());
+		ItemStack item = new ItemStack(Material.SPLASH_POTION, settings.TWEAK_WATER_BOTTLE_CRAFT_AMOUNT.get());
 		if (item.getItemMeta() == null || !(item.getItemMeta() instanceof PotionMeta meta)) {
 			return;
 		}
 
-		meta.setMaxStackSize(Settings.TWEAK_WATER_BOTTLE_CRAFT_AMOUNT.get());
+		meta.setMaxStackSize(settings.TWEAK_WATER_BOTTLE_CRAFT_AMOUNT.get());
 		meta.setBasePotionType(PotionType.WATER);
 		item.setItemMeta(meta);
 

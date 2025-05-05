@@ -1,9 +1,8 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.scheduler.Scheduler;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,7 +20,7 @@ public class InventoryCraftingTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_INVENTORY_CRAFTING.get();
+		return settings.TWEAK_INVENTORY_CRAFTING.get();
 	}
 
 	@EventHandler
@@ -34,7 +33,7 @@ public class InventoryCraftingTweak extends Tweak {
 		Player player = (Player) event.getWhoClicked();
 		if (event.getClick().isRightClick() && item != null && item.getType() == Material.CRAFTING_TABLE) {
 			event.setCancelled(true);
-			Scheduler.sync().run(() -> player.openWorkbench(null, true));
+			Bukkit.getScheduler().runTask(plugin, () -> player.openWorkbench(null, true));
 		}
 	}
 }

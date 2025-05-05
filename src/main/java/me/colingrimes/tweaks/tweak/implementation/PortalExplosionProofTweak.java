@@ -1,7 +1,6 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -17,7 +16,7 @@ public class PortalExplosionProofTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_PORTAL_EXPLOSION_PROOF.get();
+		return settings.TWEAK_PORTAL_EXPLOSION_PROOF.get();
 	}
 
 	@EventHandler

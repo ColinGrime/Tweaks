@@ -1,12 +1,9 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.event.PlayerInteractBlockEvent;
-import me.colingrimes.midnight.util.bukkit.Inventories;
-import me.colingrimes.midnight.util.bukkit.Items;
-import me.colingrimes.midnight.util.bukkit.Players;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -23,7 +20,7 @@ public class FireDriesSpongesTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_FIRE_DRIES_SPONGES.get();
+		return settings.TWEAK_FIRE_DRIES_SPONGES.get();
 	}
 
 	@EventHandler
@@ -37,16 +34,16 @@ public class FireDriesSpongesTweak extends Tweak {
 		event.setCancelled(true);
 
 		Player player = event.getPlayer();
-		Players.sound(player, Sound.BLOCK_FIRE_EXTINGUISH);
+		Util.sound(player, Sound.BLOCK_FIRE_EXTINGUISH);
 
 		// Damage flint & steel.
-		if (event.isItem(Material.FLINT_AND_STEEL) && Items.damage(event.getItem())) {
-			Players.sound(player, Sound.ENTITY_ITEM_BREAK);
+		if (event.isItem(Material.FLINT_AND_STEEL) && Util.damage(event.getItem())) {
+			Util.sound(player, Sound.ENTITY_ITEM_BREAK);
 		}
 
 		// Use a single fire charge.
 		if (event.isItem(Material.FIRE_CHARGE)) {
-			Inventories.removeSingle(event.getInventory(), event.getItem());
+			Util.removeSingle(event.getItem());
 		}
 	}
 }

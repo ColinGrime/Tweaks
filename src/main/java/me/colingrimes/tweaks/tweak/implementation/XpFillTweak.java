@@ -1,15 +1,14 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.event.PlayerInteractBlockEvent;
-import me.colingrimes.midnight.util.bukkit.Experience;
-import me.colingrimes.midnight.util.bukkit.Inventories;
-import me.colingrimes.midnight.util.bukkit.Items;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Experience;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 
@@ -21,7 +20,7 @@ public class XpFillTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_XP_FILL.get();
+		return settings.TWEAK_XP_FILL.get();
 	}
 
 	@EventHandler
@@ -31,9 +30,12 @@ public class XpFillTweak extends Tweak {
 		}
 
 		Player player = event.getPlayer();
-		if (Experience.fromPlayer(player) >= Settings.TWEAK_XP_FILL_COST.get() && Inventories.removeSingle(event.getInventory(), event.getItem())) {
-			Experience.remove(player, Settings.TWEAK_XP_FILL_COST.get());
-			Inventories.give(player, Items.of(Material.EXPERIENCE_BOTTLE).build(), true);
+		if (Experience.fromPlayer(player) >= settings.TWEAK_XP_FILL_COST.get()) {
+			Util.removeSingle(event.getItem());
+			Experience.remove(player, settings.TWEAK_XP_FILL_COST.get());
+			for (ItemStack item : event.getPlayer().getInventory().addItem(new ItemStack(Material.EXPERIENCE_BOTTLE)).values()) {
+				player.getWorld().dropItemNaturally(player.getLocation(), item);
+			}
 			event.setCancelled(true);
 		}
 	}

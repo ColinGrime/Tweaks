@@ -1,9 +1,8 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.util.bukkit.Inventories;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -22,7 +21,7 @@ public class NameTagDyeTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_NAME_TAG_DYE.get();
+		return settings.TWEAK_NAME_TAG_DYE.get();
 	}
 
 	@EventHandler
@@ -35,7 +34,7 @@ public class NameTagDyeTweak extends Tweak {
 		Entity entity = event.getRightClicked();
 		if (item.getType().name().endsWith("DYE") && entity.getCustomName() != null) {
 			entity.setCustomName(convertDye(item.getType()) + ChatColor.stripColor(entity.getCustomName()));
-			Inventories.removeSingle(event.getPlayer().getInventory(), item);
+			Util.removeSingle(item);
 		}
 	}
 

@@ -1,7 +1,6 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -16,7 +15,7 @@ public class RecipeUnlockAllTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_RECIPE_UNLOCK_ALL.get();
+		return settings.TWEAK_RECIPE_UNLOCK_ALL.get();
 	}
 
 	@EventHandler

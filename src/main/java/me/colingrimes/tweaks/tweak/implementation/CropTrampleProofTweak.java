@@ -1,7 +1,6 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -12,15 +11,15 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import javax.annotation.Nonnull;
 
-public class CropTrampleProof extends Tweak {
+public class CropTrampleProofTweak extends Tweak {
 
-	public CropTrampleProof(@Nonnull Tweaks plugin) {
+	public CropTrampleProofTweak(@Nonnull Tweaks plugin) {
 		super(plugin, "crops_trample_proof");
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_CROPS_TRAMPLE_PROOF.get();
+		return settings.TWEAK_CROPS_TRAMPLE_PROOF.get();
 	}
 
 	@EventHandler

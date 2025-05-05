@@ -1,11 +1,9 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.event.PlayerInteractBlockEvent;
-import me.colingrimes.midnight.util.bukkit.Items;
-import me.colingrimes.midnight.util.bukkit.Players;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.event.EventHandler;
@@ -21,7 +19,7 @@ public class HayBaleBreadTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_HAY_BALE_BREAD.get();
+		return settings.TWEAK_HAY_BALE_BREAD.get();
 	}
 
 	@EventHandler
@@ -35,8 +33,8 @@ public class HayBaleBreadTweak extends Tweak {
 		event.setCancelled(true);
 
 		// Damage hoe.
-		if (Items.damage(event.getItem())) {
-			Players.sound(event.getPlayer(), Sound.ENTITY_ITEM_BREAK);
+		if (Util.damage(event.getItem())) {
+			Util.sound(event.getPlayer(), Sound.ENTITY_ITEM_BREAK);
 		}
 	}
 }

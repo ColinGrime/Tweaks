@@ -1,11 +1,10 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.scheduler.Scheduler;
-import me.colingrimes.midnight.util.bukkit.Entities;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
@@ -37,18 +36,18 @@ public class EntityEquipTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_ENTITY_EQUIP.get();
+		return settings.TWEAK_ENTITY_EQUIP.get();
 	}
 
 	@EventHandler
 	public void onPlayerDropItem(@Nonnull PlayerDropItemEvent event) {
-		Scheduler.sync().runLater(() -> {
+		Bukkit.getScheduler().runTaskLater(plugin, () -> {
 			if (event.getItemDrop().isDead()) {
 				return;
 			}
 
-			for (LivingEntity entity : Entities.nearby(LivingEntity.class, event.getItemDrop().getLocation(), 1)) {
-				if (!EQUIPPABLE_ENTITIES.contains(entity.getType())) {
+			for (Entity nearbyEntity : event.getItemDrop().getNearbyEntities(1, 1, 1)) {
+				if (!(nearbyEntity instanceof LivingEntity entity) || !EQUIPPABLE_ENTITIES.contains(entity.getType())) {
 					continue;
 				}
 

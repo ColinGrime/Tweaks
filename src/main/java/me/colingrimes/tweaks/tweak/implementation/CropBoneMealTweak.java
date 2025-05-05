@@ -1,10 +1,9 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.event.PlayerInteractBlockEvent;
-import me.colingrimes.midnight.util.bukkit.Inventories;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -27,7 +26,7 @@ public class CropBoneMealTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_CROPS_BONE_MEAL.get();
+		return settings.TWEAK_CROPS_BONE_MEAL.get();
 	}
 
 	@EventHandler
@@ -44,14 +43,16 @@ public class CropBoneMealTweak extends Tweak {
 			}
 
 			Block top = location.getBlock();
-			if (top.getType().isAir() && Inventories.removeSingle(event.getInventory(), event.getItem())) {
+			if (top.getType().isAir()) {
+				Util.removeSingle(event.getItem());
 				top.setType(event.getBlockType());
 				event.setCancelled(true);
 			}
 		}
 
 		// Grows nether wart.
-		if (event.isBlock(Material.NETHER_WART) && crop.getAge() < crop.getMaximumAge() && Inventories.removeSingle(event.getInventory(), event.getItem())) {
+		if (event.isBlock(Material.NETHER_WART) && crop.getAge() < crop.getMaximumAge()) {
+			Util.removeSingle(event.getItem());
 			crop.setAge(crop.getAge() + 1);
 			event.getBlock().setBlockData(crop);
 			event.setCancelled(true);

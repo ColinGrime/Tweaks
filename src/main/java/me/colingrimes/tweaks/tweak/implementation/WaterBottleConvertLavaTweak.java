@@ -1,11 +1,9 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.scheduler.Scheduler;
-import me.colingrimes.midnight.util.bukkit.Locations;
-import me.colingrimes.midnight.util.misc.Random;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.SplashPotion;
@@ -25,7 +23,7 @@ public class WaterBottleConvertLavaTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_WATER_BOTTLE_CONVERT_LAVA.get();
+		return settings.TWEAK_WATER_BOTTLE_CONVERT_LAVA.get();
 	}
 
 	@EventHandler
@@ -40,12 +38,12 @@ public class WaterBottleConvertLavaTweak extends Tweak {
 			return;
 		}
 
-		Scheduler.sync().runRepeating((task) -> {
+		Bukkit.getScheduler().runTaskTimer(plugin, (task) -> {
 			if (potion.isDead()) {
-				task.stop();
+				task.cancel();
 			} else if (potion.getLocation().getBlock().getType() == Material.LAVA) {
-				convertLava(event.getEntity().getLocation(), 0.50, 0, Random.number(6, 10));
-				task.stop();
+				convertLava(event.getEntity().getLocation(), 0.50, 0, Util.number(6, 10));
+				task.cancel();
 			}
 		}, 1L, 1L);
 	}
@@ -66,8 +64,8 @@ public class WaterBottleConvertLavaTweak extends Tweak {
 
 		Location corner1 = location.clone().add(+radius, +radius, +radius);
 		Location corner2 = location.clone().add(-radius, -radius, -radius);
-		for (Location check : Locations.between(corner1, corner2)) {
-			if (check.getBlock().getType() == Material.LAVA && Random.chance(100 - skipChance)) {
+		for (Location check : Util.between(corner1, corner2)) {
+			if (check.getBlock().getType() == Material.LAVA && Util.chance(100 - skipChance)) {
 				check.getBlock().setType(Material.OBSIDIAN);
 				remaining -= 1;
 			}

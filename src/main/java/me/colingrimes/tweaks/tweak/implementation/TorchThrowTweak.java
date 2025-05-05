@@ -1,9 +1,8 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.scheduler.Scheduler;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -22,7 +21,7 @@ public class TorchThrowTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_TORCH_THROW.get();
+		return settings.TWEAK_TORCH_THROW.get();
 	}
 
 	@EventHandler
@@ -32,9 +31,10 @@ public class TorchThrowTweak extends Tweak {
 		}
 
 		Item item = event.getItemDrop();
-		Scheduler.sync().runRepeating((task) -> {
+		Bukkit.getScheduler().runTaskTimer(plugin, (task) -> {
 			if (item.isDead()) {
-				task.stop();
+				task.cancel();
+				return;
 			}
 
 			Location location = item.getLocation();
@@ -43,7 +43,7 @@ public class TorchThrowTweak extends Tweak {
 				return;
 			}
 
-			task.stop();
+			task.cancel();
 
 			Block block = location.getBlock();
 			if (block.getType().isAir()) {

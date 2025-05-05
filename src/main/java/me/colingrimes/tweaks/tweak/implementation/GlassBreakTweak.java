@@ -1,10 +1,9 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.event.PlayerInteractBlockEvent;
-import me.colingrimes.midnight.util.bukkit.Players;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.Sound;
 import org.bukkit.event.EventHandler;
 
@@ -18,7 +17,7 @@ public class GlassBreakTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_GLASS_BREAK.get();
+		return settings.TWEAK_GLASS_BREAK.get();
 	}
 
 	@EventHandler
@@ -27,8 +26,8 @@ public class GlassBreakTweak extends Tweak {
 			return;
 		}
 
-		if (Settings.TWEAK_GLASS_BREAK_MATERIALS.get().contains(event.getItemType())) {
-			Players.sound(event.getPlayer(), Sound.BLOCK_GLASS_BREAK);
+		if (settings.TWEAK_GLASS_BREAK_MATERIALS.get().contains(event.getItemType())) {
+			Util.sound(event.getPlayer(), Sound.BLOCK_GLASS_BREAK);
 			event.getPlayer().breakBlock(event.getBlock());
 			event.setCancelled(true);
 		}

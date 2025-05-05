@@ -1,8 +1,7 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -20,7 +19,7 @@ public class DoubleDoorsTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_DOUBLE_DOORS.get();
+		return settings.TWEAK_DOUBLE_DOORS.get();
 	}
 
 	@EventHandler
@@ -29,7 +28,7 @@ public class DoubleDoorsTweak extends Tweak {
 			return;
 		}
 
-		boolean toggle = !event.isBlock(Material.IRON_DOOR) || Settings.TWEAK_DOUBLE_DOORS_IRON_DOORS.get();
+		boolean toggle = !event.isBlock(Material.IRON_DOOR) || settings.TWEAK_DOUBLE_DOORS_IRON_DOORS.get();
 
 		// Activate the double door.
 		if (toggle && activateDoubleDoor(event.getBlock())) {
@@ -42,7 +41,7 @@ public class DoubleDoorsTweak extends Tweak {
 		}
 
 		// Swing hand on iron doors.
-		if (event.isBlock(Material.IRON_DOOR) && Settings.TWEAK_DOUBLE_DOORS_IRON_DOORS.get()) {
+		if (event.isBlock(Material.IRON_DOOR) && settings.TWEAK_DOUBLE_DOORS_IRON_DOORS.get()) {
 			event.getPlayer().swingMainHand();
 		}
 	}

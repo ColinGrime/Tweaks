@@ -1,9 +1,8 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.util.bukkit.Items;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
 import me.colingrimes.tweaks.tweak.Tweak;
+import me.colingrimes.tweaks.util.Util;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 
@@ -17,14 +16,14 @@ public class AnvilColorTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_ANVIL_COLOR.get();
+		return settings.TWEAK_ANVIL_COLOR.get();
 	}
 
 	@EventHandler
 	public void onPrepareAnvil(@Nonnull PrepareAnvilEvent event) {
 		String renameText = event.getView().getRenameText();
 		if (event.getResult() != null && renameText != null && renameText.contains("&")) {
-			event.setResult(Items.of(event.getResult()).build());
+			event.setResult(Util.rename(event.getResult(), renameText));
 		}
 	}
 }

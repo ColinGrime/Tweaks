@@ -1,8 +1,7 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.Tweaks;
-import me.colingrimes.tweaks.config.Settings;
+import me.colingrimes.tweaks.event.PlayerInteractBlockEvent;
 import me.colingrimes.tweaks.tweak.Tweak;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
@@ -21,7 +20,7 @@ public class WeaponSwingThroughGrassTweak extends Tweak {
 
 	@Override
 	public boolean isEnabled() {
-		return Settings.TWEAK_WEAPON_SWING_THROUGH_GRASS.get();
+		return settings.TWEAK_WEAPON_SWING_THROUGH_GRASS.get();
 	}
 
 	@EventHandler

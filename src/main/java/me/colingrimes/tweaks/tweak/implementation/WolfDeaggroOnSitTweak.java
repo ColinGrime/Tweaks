@@ -1,8 +1,8 @@
 package me.colingrimes.tweaks.tweak.implementation;
 
-import me.colingrimes.midnight.scheduler.Scheduler;
 import me.colingrimes.tweaks.Tweaks;
 import me.colingrimes.tweaks.tweak.Tweak;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Wolf;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -31,7 +31,7 @@ public class WolfDeaggroOnSitTweak extends Tweak {
 		// Perhaps shift right click to sit all? Not sure yet.
 		if (wolf.isTamed() && event.getPlayer().equals(wolf.getOwner())) {
 			boolean wasSitting = wolf.isSitting();
-			Scheduler.sync().runLater(() -> {
+			Bukkit.getScheduler().runTaskLater(plugin, () -> {
 				if (wolf.isSitting() && !wasSitting) {
 					wolf.setAngry(false);
 					wolf.setTarget(null);
