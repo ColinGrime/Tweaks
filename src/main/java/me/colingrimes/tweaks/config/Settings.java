@@ -42,6 +42,7 @@ public class Settings {
 	public final Option<Integer>       TWEAK_XP_FILL_COST               = option("tweaks.xp-fill.cost", 8);
 	public final Option<String>  RELOADED       = option("admin.reloaded", "&2&l✓ &a&lTweaks &ahas been reloaded. Registered &l{amount} &atweaks.");
 	public final Option<String>  RESET_RECIPES  = option("reset-recipes", "&2&l✓ &aRecipes have been reset for all online players.");
+	public final Option<String>  NO_PERMISSION  = option("no-permission", "&4&l❌ &cYou lack the required permission for this command.");
 	public final Option<Boolean> ENABLE_METRICS = option("enable-metrics", true);
 
 	private final Tweaks plugin;

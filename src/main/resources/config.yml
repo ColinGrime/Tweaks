@@ -70,6 +70,7 @@ tweaks:
 # Random admin stuff. No need to mess with this!
 reloaded: "&2&l✓ &a&lTweaks &ahas been reloaded. Registered &l{amount} &atweaks."
 reset-recipes: "&2&l✓ &aRecipes have been reset for all online players."
+no-permission: "&4&l❌ &cYou lack the required permission for this command."
 
 # Allows us to collect anonymous data about the plugin.
 enable-metrics: true
