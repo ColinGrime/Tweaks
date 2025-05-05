@@ -1,7 +1,8 @@
 package me.colingrimes.tweaks.tweak;
 
-import me.colingrimes.midnight.util.Common;
 import me.colingrimes.tweaks.Tweaks;
+import me.colingrimes.tweaks.config.Settings;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
 import javax.annotation.Nonnull;
@@ -9,13 +10,15 @@ import javax.annotation.Nonnull;
 public abstract class Tweak implements Listener {
 
 	protected final Tweaks plugin;
+	protected final Settings settings;
 	protected final String id;
 
 	public Tweak(@Nonnull Tweaks plugin, @Nonnull String id) {
 		this.plugin = plugin;
+		this.settings = plugin.getSettings();
 		this.id = id;
 		if (isEnabled()) {
-			Common.register(plugin, this);
+			Bukkit.getPluginManager().registerEvents(this, plugin);
 		}
 	}
 

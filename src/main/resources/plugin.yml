@@ -3,4 +3,7 @@ main: me.colingrimes.tweaks.Tweaks
 version: ${version}
 api-version: 1.21
 author: Scill
-depend: [Midnight]
+commands:
+  tweaks:
+    description: Main command for the Tweaks plugin.
+    aliases: [tweak]
