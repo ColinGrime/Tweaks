@@ -10,16 +10,17 @@ import org.bukkit.block.data.type.Door;
 import org.bukkit.event.EventHandler;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-public class DoubleDoorsTweak extends Tweak {
+public class DoorDoubleTweak extends Tweak {
 
-	public DoubleDoorsTweak(@Nonnull Tweaks plugin) {
-		super(plugin, "double_doors");
+	public DoorDoubleTweak(@Nonnull Tweaks plugin) {
+		super(plugin, "doors_double");
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return settings.TWEAK_DOUBLE_DOORS.get();
+		return settings.TWEAK_DOORS_DOUBLE.get();
 	}
 
 	@EventHandler
@@ -28,48 +29,51 @@ public class DoubleDoorsTweak extends Tweak {
 			return;
 		}
 
-		boolean toggle = !event.isBlock(Material.IRON_DOOR) || settings.TWEAK_DOUBLE_DOORS_IRON_DOORS.get();
-
-		// Activate the double door.
-		if (toggle && activateDoubleDoor(event.getBlock())) {
-			event.setCancelled(true);
-		} else if (toggle) {
-			Door door = (Door) event.getBlock().getBlockData();
-			door.setOpen(!door.isOpen());
-			event.getBlock().setBlockData(door);
-			event.setCancelled(true);
+		// Ignore iron doors if the iron door tweak is off.
+		if (event.isBlock(Material.IRON_DOOR) && !settings.TWEAK_DOORS_IRON.get()) {
+			return;
 		}
 
-		// Swing hand on iron doors.
-		if (event.isBlock(Material.IRON_DOOR) && settings.TWEAK_DOUBLE_DOORS_IRON_DOORS.get()) {
-			event.getPlayer().swingMainHand();
-		}
+		openDoor(getDoubleDoor(event.getBlock()));
 	}
 
 	/**
-	 * Attempts to activate double doors.
+	 * Opens the door that corresponds to the specified block.
 	 *
-	 * @param block the door block
-	 * @return true if the double door was activated
+	 * @param block the block
 	 */
-	private boolean activateDoubleDoor(@Nonnull Block block) {
-		Door door = (Door) block.getBlockData();
-		Block adjacent = block.getRelative(getAdjacentDoorFace(door));
+	private void openDoor(@Nullable Block block) {
+		if (block == null || !(block.getBlockData() instanceof Door door)) {
+			return;
+		}
+
+		door.setOpen(!door.isOpen());
+		block.setBlockData(door);
+	}
+
+	/**
+	 * Gets the adjacent door block if available.
+	 *
+	 * @param doorBlock the door block
+	 * @return the adjacent door (making up the double door) or null
+	 */
+	@Nullable
+	private Block getDoubleDoor(@Nonnull Block doorBlock) {
+		if (!(doorBlock instanceof Door door)) {
+			return null;
+		}
+
+		Block adjacent = doorBlock.getRelative(getAdjacentDoorFace(door));
 		if (!(adjacent.getBlockData() instanceof Door adjacentDoor)) {
-			return false;
+			return null;
 		}
 
 		// Verify the adjacent door lines up perfectly with the other door.
 		if (door.getHinge() == adjacentDoor.getHinge() || door.getHalf() != adjacentDoor.getHalf()) {
-			return false;
+			return null;
 		}
 
-		boolean open = !door.isOpen();
-		door.setOpen(open);
-		block.setBlockData(door);
-		adjacentDoor.setOpen(open);
-		adjacent.setBlockData(adjacentDoor);
-		return true;
+		return adjacent;
 	}
 
 	/**
