@@ -2,7 +2,6 @@ package me.colingrimes.tweaks.util;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
@@ -143,7 +142,9 @@ public final class Introspector {
 		private ClassLoader classLoader;
 
 		public ClassFileVisitor(@Nonnull Path startingPath, @Nonnull String packageName, @Nullable ClassLoader classLoader) {
-			if (!startingPath.toString().endsWith(packageName.replace(".", File.separator))) {
+			String normalizedPath = startingPath.toString().replace("\\", "/");
+			String normalizedPackage = packageName.replace(".", "/");
+			if (!normalizedPath.endsWith(normalizedPackage)) {
 				throw new IllegalArgumentException("Path " + startingPath + " does not end with " + packageName);
 			}
 
@@ -210,9 +211,15 @@ public final class Introspector {
 			}
 
 			String name = path.toString();
-			name = name.substring(startingPath.toString().length() + 1);
+			int startLength = startingPath.toString().length();
+			if (startLength < name.length() && (name.charAt(startLength) == '/' || name.charAt(startLength) == '\\')) {
+				startLength++;
+			}
+
+			name = name.substring(startLength);
 			name = name.replace(".class", "");
-			return packageName + "." + name.replace(File.separator, ".");
+			name = name.replace("\\", ".").replace("/", ".");
+			return packageName + "." + name;
 		}
 	}
 
