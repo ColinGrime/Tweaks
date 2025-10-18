@@ -59,7 +59,7 @@ public class DoorDoubleTweak extends Tweak {
 	 */
 	@Nullable
 	private Block getDoubleDoor(@Nonnull Block doorBlock) {
-		if (!(doorBlock instanceof Door door)) {
+		if (!(doorBlock.getBlockData() instanceof Door door)) {
 			return null;
 		}
 

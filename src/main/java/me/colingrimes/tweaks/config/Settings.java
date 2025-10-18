@@ -17,8 +17,8 @@ public class Settings {
 	public final Option<Boolean>       TWEAK_ANVIL_REPAIR               = option("tweaks.anvil-repair", true);
 	public final Option<Boolean>       TWEAK_CROPS_BONE_MEAL            = option("tweaks.crops-bone-meal", true);
 	public final Option<Boolean>       TWEAK_CROPS_TRAMPLE_PROOF        = option("tweaks.crops-trample-proof", true);
-	public final Option<Boolean>       TWEAK_DOUBLE_DOORS               = option("tweaks.double-doors.toggle", true);
-	public final Option<Boolean>       TWEAK_DOUBLE_DOORS_IRON_DOORS    = option("tweaks.double-doors.iron-doors", false);
+	public final Option<Boolean>       TWEAK_DOORS_DOUBLE               = option("tweaks.doors-double", true);
+	public final Option<Boolean>       TWEAK_DOORS_IRON                 = option("tweaks.doors-iron", false);
 	public final Option<Boolean>       TWEAK_DROPS_MAGNET               = option("tweaks.drops-magnet", true);
 	public final Option<Boolean>       TWEAK_ENTITY_EQUIP               = option("tweaks.entity-equip", false);
 	public final Option<Boolean>       TWEAK_ENTITY_SET_ON_FIRE         = option("tweaks.entity-set-on-fire", true);
@@ -40,7 +40,7 @@ public class Settings {
 	public final Option<Boolean>       TWEAK_WEAPON_SWING_THROUGH_GRASS = option("tweaks.weapon-swing-through-grass", true);
 	public final Option<Boolean>       TWEAK_XP_FILL                    = option("tweaks.xp-fill.toggle", true);
 	public final Option<Integer>       TWEAK_XP_FILL_COST               = option("tweaks.xp-fill.cost", 8);
-	public final Option<String>  RELOADED       = option("admin.reloaded", "&2&l✓ &a&lTweaks &ahas been reloaded. Registered &l{amount} &atweaks.");
+	public final Option<String>  RELOADED       = option("reloaded", "&2&l✓ &a&lTweaks &ahas been reloaded. Registered &l{amount} &atweaks.");
 	public final Option<String>  RESET_RECIPES  = option("reset-recipes", "&2&l✓ &aRecipes have been reset for all online players.");
 	public final Option<String>  NO_PERMISSION  = option("no-permission", "&4&l❌ &cYou lack the required permission for this command.");
 	public final Option<Boolean> ENABLE_METRICS = option("enable-metrics", true);
