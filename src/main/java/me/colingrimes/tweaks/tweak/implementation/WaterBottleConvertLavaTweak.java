@@ -39,9 +39,7 @@ public class WaterBottleConvertLavaTweak extends Tweak {
 		}
 
 		Bukkit.getScheduler().runTaskTimer(plugin, (task) -> {
-			if (potion.isDead()) {
-				task.cancel();
-			} else if (potion.getLocation().getBlock().getType() == Material.LAVA) {
+			if (potion.isDead() || potion.getLocation().getBlock().getType() == Material.LAVA) {
 				convertLava(event.getEntity().getLocation(), 0.50, 0, Util.number(6, 10));
 				task.cancel();
 			}
@@ -62,9 +60,7 @@ public class WaterBottleConvertLavaTweak extends Tweak {
 			return remaining;
 		}
 
-		Location corner1 = location.clone().add(+radius, +radius, +radius);
-		Location corner2 = location.clone().add(-radius, -radius, -radius);
-		for (Location check : Util.between(corner1, corner2)) {
+		for (Location check : Util.around(location, radius)) {
 			if (check.getBlock().getType() == Material.LAVA && Util.chance(100 - skipChance)) {
 				check.getBlock().setType(Material.OBSIDIAN);
 				remaining -= 1;
