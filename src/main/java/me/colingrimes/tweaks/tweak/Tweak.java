@@ -30,6 +30,15 @@ public abstract class Tweak implements Listener {
 	public abstract boolean isEnabled();
 
 	/**
+	 * Gets the number of tweaks that are enabled by the tweak class.
+	 *
+	 * @return the number of enabled tweaks
+	 */
+	public int getCount() {
+		return isEnabled() ? 1 : 0;
+	}
+
+	/**
 	 * Runs when the tweak is initialized.
 	 */
 	public void init() {}

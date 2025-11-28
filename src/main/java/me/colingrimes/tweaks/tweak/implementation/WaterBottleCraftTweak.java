@@ -37,7 +37,7 @@ public class WaterBottleCraftTweak extends Tweak {
 		meta.setBasePotionType(PotionType.WATER);
 		item.setItemMeta(meta);
 
-		NamespacedKey key = new NamespacedKey(plugin, "tweaks_water_bottles");
+		NamespacedKey key = new NamespacedKey(plugin, "water_bottles");
 		ShapelessRecipe recipe = new ShapelessRecipe(key, item);
 		recipe.addIngredient(Material.WATER_BUCKET);
 		Bukkit.addRecipe(recipe);
@@ -45,12 +45,12 @@ public class WaterBottleCraftTweak extends Tweak {
 
 	@Override
 	public void shutdown() {
-		Bukkit.removeRecipe(new NamespacedKey(plugin, "tweaks_water_bottles"));
+		Bukkit.removeRecipe(new NamespacedKey(plugin, "water_bottles"));
 	}
 
 	@EventHandler
 	public void onCraftItem(@Nonnull CraftItemEvent event) {
-		if (!(event.getRecipe() instanceof ShapelessRecipe recipe) || !recipe.getKey().getKey().equals("tweaks_water_bottles")) {
+		if (!(event.getRecipe() instanceof ShapelessRecipe recipe) || !recipe.getKey().getKey().equals("water_bottles")) {
 			return;
 		}
 

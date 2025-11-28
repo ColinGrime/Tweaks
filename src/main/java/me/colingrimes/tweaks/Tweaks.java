@@ -81,7 +81,7 @@ public class Tweaks extends JavaPlugin {
 		tweaks.addAll(tweakClasses.stream().filter(Tweak::isEnabled).toList());
 		tweaks.forEach(Tweak::init);
 		Logger.log("Registered " + tweaks.size() + " tweaks.");
-		return tweaks.size();
+		return tweaks.stream().mapToInt(Tweak::getCount).sum();
 	}
 
 	/**

@@ -1,29 +1,44 @@
 tweaks:
   # Items can be colored in the anvil.
-  anvil-color: true
+  anvil-color: false
   # Right-clicking an anvil with an iron block will repair it slightly.
-  anvil-repair: true
+  anvil-repair: false
+  # Right-click a bee with a beehive to capture it. Only works if the beehive is not full.
+  bee-capture: false
+  # Throw concrete powder into a cauldron to turn it into concrete.
+  concrete-conversion:
+    toggle: false
+    # Whether the cauldron should use a water level on conversion.
+    use-water: false
   # Allows players to bone meal any crop.
-  crops-bone-meal: true
+  crops-bone-meal: false
+  # Right-click crops with a hoe to harvest them.
+  crops-harvest: false
+  # Breaking grass or flowers with a hoe will 3x3 break them. Netherite hoes will 5x5 break them.
+  crops-lawn-mower: false
   # Prevents the trampling of crops.
-  crops-trample-proof: true
+  crops-trample-proof: false
+  # Deepslate breaks instantly when mined with a netherite pickaxe, efficiency 5, and haste 2.
+  deepslate-break: false
   # Double doors can be opened with 1 click.
-  doors-double: true
+  doors-double: false
   # Allows you to open iron doors with your hand.
   # This works with the 'doors-double' option above!
   doors-iron: false
   # Breaking blocks nearby will cause their item drops to go towards the player a little.
   # This means if you are building high up, you won't lose all your drops.
-  drops-magnet: true
+  drops-magnet: false
+  # Lapis stays in the lapis slot in enchanting tables when you close it.
+  enchanting-lapis: false
   # If a player throws an item close to an entity, they will auto equip it.
   entity-equip: false
   # Right-click an entity with a flint & steel or fire charge to set it on fire.
-  entity-set-on-fire: true
+  entity-set-on-fire: false
   # Setting a sponge on fire dries it out instantly.
-  fire-dries-sponges: true
+  fire-dries-sponges: false
   # Glass breaks instantly when broken by the materials below.
   glass-break:
-    toggle: true
+    toggle: false
     materials:
       - NETHERITE_PICKAXE
   # Right-clicking a hay bale with a hoe automatically crafts and drops bread.
@@ -31,38 +46,67 @@ tweaks:
   # Allows you to view the statistics (health-speed-jump) of horses by sneak-right-click.
   # This lets you find the best horses without having to tame them all first! :)
   horse-statistics:
-    toggle: true
+    toggle: false
     message:
       - "&7Max Health: &e{health}"
       - "&7Speed: &e{speed}"
       - "&7Jump: &e{jump}"
   # Right-clicking a crafting table in your inventory opens it.
-  inventory-crafting: true
+  inventory-crafting: false
+  # Breaking leaves with a hoe will break an additional block on each side. Netherite hoes will do a full 3x3x3 break.
+  leaf-cutter: false
+  # Throw dirt into a cauldron to turn it into mud.
+  mud-conversion:
+    toggle: false
+    # Whether the cauldron should use a water level on conversion.
+    use-water: false
   # Allows the dying of named mobs with dyes.
-  name-tag-dye: true
-  # Players who join the server will have all the recipes unlocked.
-  # If you accidentally kept this on and didn't want this, just do '/tweaks resetrecipes'.
-  recipe-unlock-all: true
+  name-tag-dye: false
   # Nether portals can no longer be destroyed by explosions.
   # No more ghasts or creepers destroying them!
-  portal-explosion-proof: true
+  portal-explosion-proof: false
+  # Players who join the server will have all the recipes unlocked.
+  # If you accidentally kept this on and didn't want this, just do '/tweaks resetrecipes'.
+  recipe-unlock-all: false
   # Allows you to throw torches on the ground to place them.
   # So if you throw them down a cave, it will light the block it lands on!
-  torch-throw: true
+  torch-throw: false
+  # Throwing snowballs on existing snow layers will add snow layers.
+  snowballs-add-snow-layer: false
+  # Throwing snowballs on plants or flowers will break them.
+  snowballs-break-plants: false
+  # Allows snowballs to inflict damage.
+  snowballs-damage:
+    toggle: false
+    # Amount of damage that snowballs inflict.
+    amount: 1
+  # Throwing snowballs on entities will extinguish them.
+  snowballs-extinguish-entities: false
+  # Throwing snowballs on fire will extinguish it.
+  snowballs-extinguish-fire: false
+  # Throwing snowballs on water will freeze it.
+  snowballs-form-ice: false
+  # Throwing snowballs on any block will form snow.
+  snowballs-form-snow: false
+  # Changes the knockback of snowballs.
+  snowballs-knockback:
+    toggle: false
+    # Amount of knockback that snowballs inflict.
+    amount: 0.5
   # Allows vehicles to be picked up by sneak-right-click.
-  vehicle-pickup: true
+  vehicle-pickup: false
   # Splashing a water bottle into lava converts it into obsidian.
-  water-bottle-convert-lava: true
+  water-bottle-convert-lava: false
   # Allows you to convert a water bucket into splash water bottles.
   water-bottle-craft:
-    toggle: true
+    toggle: false
     # Amount of splash water bottles you get.
-    amount: 8
+    amount: 4
   # Allows weapons (swords/axes) to swing through grass without destroying them.
-  weapon-swing-through-grass: true
+  weapon-swing-through-grass: false
   # Allows the filling of empty bottles into XP bottles by right-clicking on an enchanting table.
   xp-fill:
-    toggle: true
+    toggle: false
     # Amount of XP it takes to fill each bottle.
     # In vanilla Minecraft, an XP bottle drops an average of 7 experience.
     cost: 8

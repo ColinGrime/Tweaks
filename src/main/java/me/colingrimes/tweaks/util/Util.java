@@ -1,10 +1,10 @@
 package me.colingrimes.tweaks.util;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import com.google.common.base.Preconditions;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -12,9 +12,7 @@ import org.bukkit.util.Vector;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Util {
 
@@ -48,6 +46,53 @@ public class Util {
 		}
 		return item;
 	}
+
+	/**
+	 * Checks if the inventory does not have an empty slot.
+	 *
+	 * @param inventory the inventory to check
+	 * @return true if the inventory is full (no empty slot)
+	 */
+	public static boolean isFull(@Nonnull Inventory inventory) {
+		return inventory.firstEmpty() == -1;
+	}
+
+	/**
+	 * Checks if the specified item can fit in the inventory.
+	 * If the inventory is full, it will check to see if it can stack with a similar item.
+	 *
+	 * @param inventory the inventory to check
+	 * @param item the item to check
+	 * @return true if the item can fit in the inventory
+	 */
+	public static boolean canFit(@Nonnull Inventory inventory, @Nonnull ItemStack item) {
+		if (!isFull(inventory)) {
+			return true;
+		}
+		return Arrays.stream(inventory.getContents()).anyMatch(i -> i != null && (i.getAmount() + item.getAmount()) <= i.getMaxStackSize() && i.isSimilar(item));
+	}
+
+	/**
+	 * Attempts to give the player the item.
+	 * If the player's inventory has no room, and {@code dropOnGround} is true, the remaining items will drop on the ground.
+	 * If the player's inventory has no room, and {@code dropOnGround} is false, no items will be given.
+	 *
+	 * @param player the player
+	 * @param item the item to give to the player
+	 * @return true if there was room in the player's inventory, false if there was no room
+	 */
+	public static boolean give(@Nonnull Player player, @Nonnull ItemStack item, boolean dropOnGround) {
+		if (!canFit(player.getInventory(), item) && !dropOnGround) {
+			return false;
+		}
+
+		Collection<ItemStack> remaining = player.getInventory().addItem(item).values();
+		for (ItemStack itemDrop : remaining) {
+			player.getWorld().dropItemNaturally(player.getLocation(), itemDrop);
+		}
+		return remaining.isEmpty();
+	}
+
 
 	/**
 	 * Removes a single item from the stack.
@@ -102,6 +147,20 @@ public class Util {
 	}
 
 	/**
+	 * Retrieves all locations around a location.
+	 *
+	 * @param location the location
+	 * @param radius the radius around the location
+	 * @return all blocks around the location
+	 */
+	@Nonnull
+	public static List<Location> around(@Nonnull Location location, double radius) {
+		Location corner1 = location.clone().add(+radius, +radius, +radius);
+		Location corner2 = location.clone().add(-radius, -radius, -radius);
+		return between(corner1, corner2);
+	}
+
+	/**
 	 * Retrieves all locations between two locations.
 	 *
 	 * @param corner1 the first corner
@@ -110,15 +169,16 @@ public class Util {
 	 */
 	@Nonnull
 	public static List<Location> between(@Nonnull Location corner1, @Nonnull Location corner2) {
-		double lowX = Math.min(corner1.getX(), corner2.getX());
-		double lowY = Math.min(corner1.getY(), corner2.getY());
-		double lowZ = Math.min(corner1.getZ(), corner2.getZ());
+		int x1 = corner1.getBlockX(), y1 = corner1.getBlockY(), z1 = corner1.getBlockZ();
+		int x2 = corner2.getBlockX(), y2 = corner2.getBlockY(), z2 = corner2.getBlockZ();
+		Location min = new Location(corner1.getWorld(), Math.min(x1, x2), Math.min(y1, y2), Math.min(z1, z2));
+		Location max = new Location(corner1.getWorld(), Math.max(x1, x2), Math.max(y1, y2), Math.max(z1, z2));
 
 		List<Location> locations = new ArrayList<>();
-		for (int blockY = Math.abs(corner1.getBlockY() - corner2.getBlockY()); blockY >= 0; blockY--) {
-			for (int blockX = 0; blockX < Math.abs(corner1.getBlockX() - corner2.getBlockX()); blockX++) {
-				for (int blockZ = 0; blockZ < Math.abs(corner1.getBlockZ() - corner2.getBlockZ()); blockZ++) {
-					locations.add(new Location(corner1.getWorld(), lowX + blockX, lowY + blockY, lowZ + blockZ));
+		for (int y=max.getBlockY(); y>=min.getBlockY(); y--) {
+			for (int x=min.getBlockX(); x<=max.getBlockX(); x++) {
+				for (int z=min.getBlockZ(); z<=max.getBlockZ(); z++) {
+					locations.add(new Location(corner1.getWorld(), x, y, z));
 				}
 			}
 		}
@@ -180,5 +240,68 @@ public class Util {
 	 */
 	public static boolean chance(int num) {
 		return num >= number(0, 100);
+	}
+
+	/**
+	 * Gets all nearby entities.
+	 *
+	 * @param location the location
+	 * @param distance the distance
+	 * @return all nearby entities
+	 */
+	@Nonnull
+	public static Collection<Entity> nearby(@Nonnull Location location, double distance) {
+		return nearby(location, distance, distance, distance);
+	}
+
+	/**
+	 * Gets all nearby entities.
+	 *
+	 * @param location the location
+	 * @param x the x coordinate
+	 * @param y the y coordinate
+	 * @param z the z coordinate
+	 * @return all nearby entities
+	 */
+	@Nonnull
+	public static Collection<Entity> nearby(@Nonnull Location location, double x, double y, double z) {
+		Preconditions.checkNotNull(location.getWorld(), "World is null.");
+		return location.getWorld().getNearbyEntities(location, x, y, z);
+	}
+
+	/**
+	 * Gets all nearby entities of the specified type.
+	 *
+	 * @param entityType the type of entity to filter by
+	 * @param location the location
+	 * @param distance the distance
+	 * @return all nearby entities of the specified type
+	 */
+	@Nonnull
+	public static <T extends Entity> Collection<T> nearby(@Nonnull Class<T> entityType, @Nonnull Location location, double distance) {
+		return nearby(location, distance)
+				.stream()
+				.filter(entityType::isInstance)
+				.map(entityType::cast)
+				.toList();
+	}
+
+	/**
+	 * Gets all nearby entities of the specified type.
+	 *
+	 * @param entityType the type of entity to filter by
+	 * @param location the location
+	 * @param x the x coordinate
+	 * @param y the y coordinate
+	 * @param z the z coordinate
+	 * @return all nearby entities of the specified type
+	 */
+	@Nonnull
+	public static <T extends Entity> Collection<T> nearby(@Nonnull Class<T> entityType, @Nonnull Location location, double x, double y, double z) {
+		return nearby(location, x, y, z)
+				.stream()
+				.filter(entityType::isInstance)
+				.map(entityType::cast)
+				.toList();
 	}
 }
